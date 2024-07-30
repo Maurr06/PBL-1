@@ -1,0 +1,1 @@
+print(f"Soy mod2. __name__ = {__name__}")
