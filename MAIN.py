@@ -1,20 +1,65 @@
-import moduloo
-import mod2
-from random import randint 
+#!/usr/bin/env python3 
 
-print("Hola Mundo!")
-lista = [randint(0, 20) for i in range(10)]
+import Ying
+import Yang
 
-print(f"lista = {lista}")
+from random import randint
+import tkinter as tk
+from tkinter import messagebox
 
-sumatoria = moduloo.suml(lista)
-productoria = moduloo.prodl(lista)
-cuadratoria = mod2.sqrsl(lista)
-paritoria = mod2.divtwol(lista)
+# Definir las funciones del GUI
+def generar_lista():
+    global lista
+    lista = [randint(0, 20) for i in range(10)]
+    lista_label.config(text=f"Lista: {lista}")
 
-print(f"sumatoria = {sumatoria}")
-print(f"productoria = {productoria}")
-print(f"cuadratoria = {cuadratoria}")
-print(f"paritoria = {paritoria}")
-print(f"De moduloo, se usaron las funciones {moduloo.__counter} veces")
-print(f"De mod2, se usaron las funciones {mod2.__counter2} veces")
+def calcular_sumatoria():
+    sumatoria = Ying.suml(lista)
+    sumatoria_label.config(text=f"Sumatoria: {sumatoria}")
+
+def calcular_productoria():
+    productoria = Ying.prodl(lista)
+    productoria_label.config(text=f"Productoria: {productoria}")
+
+def calcular_cuadratoria():
+    cuadratoria = Ying.cuadrados(lista)
+    cuadratoria_label.config(text=f"Cuadratoria: {cuadratoria}")
+
+def calcular_paritoria():
+    paritoria = Yang.divtwol(lista)
+    paritoria_label.config(text=f"Paritoria: {paritoria}")
+
+def mostrar_contadores():
+    contadores = f"De moduloo, se usaron las funciones {Ying.get_counter()} veces\n" \
+                 f"De mod2, se usaron las funciones {Yang.get_counter2()} veces"
+    tk.messagebox.showinfo("Contadores", contadores)
+
+# Configuración de la ventana principal
+root = tk.Tk()
+root.geometry("960x600")  # Tamaño inicial de la ventana
+root.title("Programa de Ejemplo")
+
+lista_label = tk.Label(root, text="Lista: []")
+lista_label.pack(pady=10)
+
+sumatoria_label = tk.Label(root, text="Sumatoria: ")
+sumatoria_label.pack()
+
+productoria_label = tk.Label(root, text="Productoria: ")
+productoria_label.pack()
+
+cuadratoria_label = tk.Label(root, text="Cuadratoria: ")
+cuadratoria_label.pack()
+
+paritoria_label = tk.Label(root, text="Paritoria: ")
+paritoria_label.pack()
+
+tk.Button(root, text="Generar Lista", command=generar_lista).pack(pady=20)
+tk.Button(root, text="Calcular Sumatoria", command=calcular_sumatoria).pack()
+tk.Button(root, text="Calcular Productoria", command=calcular_productoria).pack()
+tk.Button(root, text="Calcular Cuadratoria", command=calcular_cuadratoria).pack()
+tk.Button(root, text="Calcular Paritoria", command=calcular_paritoria).pack()
+tk.Button(root, text="Mostrar Contadores", command=mostrar_contadores).pack()
+
+# Ejecutar el loop principal de Tkinter
+root.mainloop()
