@@ -33,7 +33,7 @@ def divtwol(the_list):
 def cuad_rad(the_list):
   global __counter2 ; __counter2 += 1
   
-  raices = [element**(1/2) for element in the_list]
+  raices = [round(element**(1/2), 2) for element in the_list]
 
   return raices
 
@@ -41,7 +41,7 @@ def cuad_rad(the_list):
 def cub_rad(the_list):
   global __counter2 ; __counter2 += 1
   
-  raices = [element**(1/3) for element in the_list]
+  raices = [round(element**(1/3), 2) for element in the_list]
 
   return raices
 
@@ -49,15 +49,25 @@ def cub_rad(the_list):
 def loge(the_list):
   global __counter2 ; __counter2 += 1
   
-  loges = [log(element, e) for element in the_list]
+  try:
+    loges = [round(log(element, e), 2) for element in the_list]
 
+  except ValueError:
+    loges = []
+
+    for element in the_list:
+      if element <= 0: 
+        loges.append("N/A")
+      else: 
+        loges.append(round(log(element, e), 2))
+        
   return loges
 
 
 def cosenos(the_list):
   global __counter2 ; __counter2 += 1
   
-  cotetas = [cos(element) for element in the_list]
+  cotetas = [round(cos(element), 2) for element in the_list]
 
   return cotetas
 

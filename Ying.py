@@ -48,7 +48,7 @@ def cubos(the_list):
 def eulerpot(the_list):
   global __counter ; __counter += 1
 
-  eulers = [e**element for element in the_list]
+  eulers = [round(e**element, 2) for element in the_list] 
     
   return eulers
 
@@ -56,7 +56,7 @@ def eulerpot(the_list):
 def senos(the_list):
   global __counter ; __counter += 1
 
-  tetas = [sin(element) for element in the_list]
+  tetas = [round(sin(element), 2) for element in the_list]
 
   return tetas
 
